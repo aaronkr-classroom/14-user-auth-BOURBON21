@@ -137,7 +137,16 @@ module.exports = {
      * usersController.js에서 create 액션에서의 새로운 사용자 등록
      * 원래 있는 코드는 다 지우고 아래 코드로 대체
      */
-    // User.register();
+    User.register(newUser, req.body.password, (err,user) => {
+      if (user) {
+        res.locals.redirect = "/users";
+        req.flash("success", "Account created!");
+      } else {
+        res.locals.redirect = "/users/new";
+        req.flash("error", `failed to create account! ${err.messate}`);
+      }
+      next();
+    });
   },
 
   /**
