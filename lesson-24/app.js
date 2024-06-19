@@ -127,6 +127,8 @@ const mongoose = require("mongoose");
     console.log("connected to DB!!!");
   });
 
+  app.set("port", process.env.PORT || 3000);
+
 /**
  * =====================================================================
  * Define app settings and middleware
